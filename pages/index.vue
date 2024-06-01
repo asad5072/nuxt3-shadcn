@@ -20,6 +20,9 @@
             des: 'Hello Todalyasdf'
         }
     ]
+const option = computed(() => {
+       
+})
 </script>
 <template>
     <div class="grid gap-8 h-screen">
@@ -32,15 +35,16 @@
 
         </header>
         <main>
-            <Tabs default-value="account" class="w-[400px">
+            <Tabs default-value="Today" class="w-[400px">
                 <TabsList class="">
                   <TabsTrigger v-for="item, index in list" :key="index" :value="item.title">
                     {{item.title}}
                   </TabsTrigger>                  
                 </TabsList>
                 <TabsContent v-for="item, index in list" :key="index" :value="item.title">
-                    <component v-if="item.component" :is="item.component" />
-                   <p v-else> {{ item.des }}</p>
+                    <!-- <component v-if="item.component" :is="item.component" />
+                   <p v-else> {{ item.des }}</p> -->
+                   <highchart :options="option" />
                 </TabsContent>               
               </Tabs>
         </main>
