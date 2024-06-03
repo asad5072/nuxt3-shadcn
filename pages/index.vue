@@ -2,6 +2,16 @@
     import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
     import TabsToday from '@/components/Tabs/Today.vue'
     const loading = ref(false)
+    let categories = ref({
+        'today' :[],
+        'week': [],
+        'month': [],
+        'year': []
+    })
+    let currentCategory = ref([
+            'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep',
+            'Oct', 'Nov', 'Dec'
+        ])
     const list =[
         {
             title: 'Today',
@@ -20,7 +30,7 @@
             des: 'Hello Todalyasdf'
         }
     ]
-const options = computed(() => (
+    const options = computed(() => (
     {
     chart: {
         type: 'line'
@@ -34,22 +44,24 @@ const options = computed(() => (
     //         'target="_blank">Wikipedia.com</a>'
     // },
     xAxis: {
-        categories: [
-            'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep',
-            'Oct', 'Nov', 'Dec'
-        ]
+        gridLineColor: 'transparent',
+        categories: currentCategory
     },
     yAxis: {
+        gridLineColor: 'transparent',
         title: {
-            text: 'Temperature (°C)'
+            // text: 'Temperature (°C)'
         }
     },
     plotOptions: {
         line: {
+            marker: {
+                enabled: false
+            },
             dataLabels: {
                 enabled: true
             },
-            enableMouseTracking: false
+            enableMouseTracking: true
         }
     },
     series: [{
@@ -66,7 +78,8 @@ const options = computed(() => (
         ]
     }]
 }
-))
+    ))
+    
 </script>
 <template>
     <div class="grid gap-8 h-screen">
